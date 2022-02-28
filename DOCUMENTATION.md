@@ -31,6 +31,38 @@
 | lines | <code>number</code> | amount of lines that should be generated |
 | colors | [<code>Array.&lt;GradientStop&gt;</code>](#GradientStop) | SVG gradient over the x axis |
 
+### new Settings({width?, height?, points?, lines?})
+
+* These properties can also be set when the Settings object is initialized via a constructor with named parameters (passing an object to the constructor). Both of these examples are equivalent to each other.
+
+This is a initialization **without** named parameters
+```js
+const settings = new Settings();
+settings.width = 800;
+settings.height = 600;
+settings.points = 5;
+settings.lines = 100;
+settings.colors = [
+    new GradientStop(0, '#80c0f570'),
+    new GradientStop(50, '#0471ca94'), 
+    new GradientStop(100, '#80c0f570')
+];
+```
+
+This is an initialization **with** the named parameters:
+```js
+const settings = new Settings({
+    lines: 100,
+    points: 5,
+    width: 800,
+    height: 600,
+    colors: [
+        new GradientStop(0, '#80c0f570'),
+        new GradientStop(50, '#0471ca94'), 
+        new GradientStop(100, '#80c0f570')
+    ]
+});
+```
 
 * [Settings](#Settings)
     * [.random](#Settings+random) : [<code>ParkMiller</code>](#ParkMiller)
@@ -43,6 +75,30 @@
 <a name="Settings+colors"></a>
 
 ### settings.colors : [<code>Array.&lt;GradientStop&gt;</code>](#GradientStop)
+
+**Kind**: instance method of [<code>ParkMiller</code>](#ParkMiller)  
+
+| Param | Type |
+| --- | --- |
+| min | <code>number</code> | 
+| max | <code>number</code> | 
+
+<a name="ParkMiller+nextFloatBetween"></a>
+
+### settings.createGradientFromColor(color, {stops?, colorDelta?})
+Overwrites the colors property with a new array of gradients generated from the given hex string or base-16 integer ("#facfad" or 0x155dad for example). It also takes two optional named parameters: stops (the number of GradientStop objects to generate) and colorDelta (how much to increment the original color by). Returns 
+
+```js
+settings.createGradientFromColor("#fadfac", {colorDelta: 0xaa, stops = 7});
+```
+
+**Kind**: instance method of [<code>Settings</code>](#Settings)  
+
+| Param | Type |
+| --- | --- |
+| color | <code>number</code> | 
+| colorDelta | <code>number</code> | 
+
 **Kind**: instance property of [<code>Settings</code>](#Settings)  
 <a name="GradientStop"></a>
 
